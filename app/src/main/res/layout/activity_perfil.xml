@@ -31,7 +31,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="18dp"
                 android:textSize="32sp"
-                android:text="PERFIL"
+                android:text="@string/str_perfil"
                 android:textColor="@color/white"
                 android:textStyle="bold"/>
 

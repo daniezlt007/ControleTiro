@@ -120,6 +120,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardviewrelatorio"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_gravity="fill"
@@ -231,8 +232,11 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="Dashboard"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/str_dashboard"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold" />

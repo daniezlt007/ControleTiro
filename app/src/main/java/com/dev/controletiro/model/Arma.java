@@ -19,10 +19,10 @@ public class Arma implements Serializable {
     private String descricao;
 
     @ColumnInfo(name = "tipoarma")
-    private TipoArma tipoArma;
+    private String tipoArma;
 
     @ColumnInfo(name = "calibrearma")
-    private CalibreArma calibreArma;
+    private String calibreArma;
 
     @ColumnInfo(name = "numeroregistro")
     private String numeroRegistro;
@@ -31,14 +31,14 @@ public class Arma implements Serializable {
 
     }
 
-    public Arma(String descricao, TipoArma tipoArma, CalibreArma calibreArma, String numeroRegistro) {
+    public Arma(String descricao, String tipoArma, String calibreArma, String numeroRegistro) {
         this.descricao = descricao;
         this.tipoArma = tipoArma;
         this.calibreArma = calibreArma;
         this.numeroRegistro = numeroRegistro;
     }
 
-    public Arma(Long idArma, String descricao, TipoArma tipoArma, CalibreArma calibreArma, String numeroRegistro) {
+    public Arma(Long idArma, String descricao, String tipoArma, String calibreArma, String numeroRegistro) {
         this.idArma = idArma;
         this.descricao = descricao;
         this.tipoArma = tipoArma;
@@ -62,19 +62,19 @@ public class Arma implements Serializable {
         this.descricao = descricao;
     }
 
-    public TipoArma getTipoArma() {
+    public String getTipoArma() {
         return tipoArma;
     }
 
-    public void setTipoArma(TipoArma tipoArma) {
+    public void setTipoArma(String tipoArma) {
         this.tipoArma = tipoArma;
     }
 
-    public CalibreArma getCalibreArma() {
+    public String getCalibreArma() {
         return calibreArma;
     }
 
-    public void setCalibreArma(CalibreArma calibreArma) {
+    public void setCalibreArma(String calibreArma) {
         this.calibreArma = calibreArma;
     }
 

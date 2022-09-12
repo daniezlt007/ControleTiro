@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ControleTiro</string>
+    <string name="str_cadastro_de_armas">Cadastro de Armas</string>
+    <string name="str_cadastro_de_usuario">Cadastro de Usuário</string>
+    <string name="str_dashboard">Dashboard</string>
+    <string name="str_perfil">PERFIL</string>
 </resources>

@@ -10,9 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ControleTiro">
         <activity
+            android:name=".activities.ArmaActivity"
+            android:exported="true" />
+        <activity
             android:name=".activities.PerfilActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.FormUserActivity"
             android:exported="true"

@@ -6,6 +6,7 @@ import androidx.cardview.widget.CardView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.dev.controletiro.R;
 import com.dev.controletiro.database.ProjectDataBase;
@@ -14,7 +15,7 @@ import com.dev.controletiro.util.Util;
 
 public class MainActivity extends AppCompatActivity {
 
-    private CardView cardviewconfig;
+    private CardView cardviewconfig, cardviewrelatorio;
     private Integer verificarExecucao = 0;
 
     @Override
@@ -25,9 +26,13 @@ public class MainActivity extends AppCompatActivity {
         initComponents();
         verificarUsuarioCadastrado();
 
-
         cardviewconfig.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, PerfilActivity.class);
+            startActivity(intent);
+        });
+
+        cardviewrelatorio.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, ArmaActivity.class);
             startActivity(intent);
         });
 
@@ -63,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initComponents(){
         cardviewconfig = findViewById(R.id.cardviewconfig);
+        cardviewrelatorio = findViewById(R.id.cardviewrelatorio);
     }
 
 
