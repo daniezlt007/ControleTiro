@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -15,6 +16,7 @@ import com.dev.controletiro.R;
 import com.dev.controletiro.database.ProjectDataBase;
 import com.dev.controletiro.database.dao.ArmaDAO;
 import com.dev.controletiro.model.Arma;
+import com.dev.controletiro.model.Usuario;
 import com.dev.controletiro.model.enums.CalibreArma;
 import com.dev.controletiro.model.enums.TipoArma;
 import com.dev.controletiro.util.Util;
@@ -34,7 +36,13 @@ public class ArmaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_arma);
+
         init();
+        Arma armaRecuperado = finByGetArma();
+
+        if(armaRecuperado != null){
+
+        }
 
         String[] listaTipoArma = getTiposArmasStrings();
 
@@ -45,11 +53,52 @@ public class ArmaActivity extends AppCompatActivity {
         preencherSpinner(listaCalibreArma, spinnerCalibreArma);
 
         buttonSalvarArma.setOnClickListener(view -> {
+            String msg = "";
+            String descricaoArma = txtdescricaoarma.getText().toString();
+            int tipoArma = spinnerTipoArma.getSelectedItemPosition();
+            int calibreArma = spinnerCalibreArma.getSelectedItemPosition();
+            String numeroRegistro = txtnumeroregistro.getText().toString();
+
+            if(descricaoArma.isEmpty()){
+                msg += "Campo Descrição deve ser preenchido.\n";
+            }
+
+            if(tipoArma < 1){
+                msg += "Tipo da Arma deve ser selecionado.\n";
+            }
+
+            if(calibreArma < 1){
+                msg += "Calibre da Arma deve ser selecionado.\n";
+            }
+
+            if(numeroRegistro.isEmpty()){
+                msg += "Campo Número de Registro deve ser preenchido.\n";
+            }
+
+            if (!msg.equals("")) {
+                Util.showMsgToast(ArmaActivity.this, msg);
+            } else{
+
+            }
+
             Arma arma = recuperaArma();
             salvarArma(arma);
             Util.showMsgToast(ArmaActivity.this, "Salvo com sucesso.");
         });
 
+    }
+
+    private Boolean recuperarDadosDeOutraTela() {
+        Intent intent = getIntent();
+        Bundle recuperaDados = intent.getExtras();
+        if(recuperaDados != null){
+            Arma armaRecuperado = (Arma) recuperaDados.get("arma");
+            if(armaRecuperado != null){
+                preenc(usuarioRecuperado);
+                return true;
+            }
+        }
+        return false;
     }
 
     private void preencherSpinner(String[] listaParam, Spinner spinnerTipoArma) {
@@ -100,6 +149,12 @@ public class ArmaActivity extends AppCompatActivity {
         buttonSalvarArma = findViewById(R.id.btnsalvararma);
     }
 
+    private void preencherCampos(Arma arma){
+        txtIdArma.setText(arma.getIdArma().toString());
+        txtdescricaoarma.setText(arma.getDescricao());
+
+    }
+
     private void salvarArma(Arma arma){
         if(arma != null){
             ArmaDAO armaDAO = ProjectDataBase.getInstance(ArmaActivity.this).getArmaDAO();
@@ -107,6 +162,12 @@ public class ArmaActivity extends AppCompatActivity {
         } else {
             Util.showMsgConfirm(ArmaActivity.this, "Atenção", "Objeto arma não pode ser vazio.", null);
         }
+    }
+
+    private Arma finByGetArma(){
+        ArmaDAO armaDAO = ProjectDataBase.getInstance(ArmaActivity.this).getArmaDAO();
+        Arma arma = armaDAO.findByOneArma();
+        return arma;
     }
 
     private Arma recuperaArma(){
